@@ -1,5 +1,3 @@
-// lib/pages/home_page.dart
-
 import 'package:flutter/material.dart';
 import '../models/planet_model.dart';
 import '../services/api_services.dart';
@@ -46,7 +44,25 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('COMPARE PLANETS'),
+        toolbarHeight: 100,
+        title: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/logo.png',
+              height: 30, 
+            ),
+            const SizedBox(height: 8),
+            const Text(
+              'COMPARE PLANETS',
+              style: TextStyle(
+                fontFamily: 'OpenSans',
+                fontWeight: FontWeight.w600,
+                fontSize: 20,
+              ),
+            ),
+          ],
+        ),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -97,6 +113,9 @@ class _HomePageState extends State<HomePage> {
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 15),
+                        backgroundColor: Colors.grey[850],
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12),)
                       ),
                       onPressed: (_selectedPlanet1 != null && _selectedPlanet2 != null)
                           ? () {

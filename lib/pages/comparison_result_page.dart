@@ -19,6 +19,8 @@ class ComparisonResultPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Comparison Result'),
         centerTitle: true,
+        backgroundColor: Colors.grey[900],
+        elevation: 0,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
