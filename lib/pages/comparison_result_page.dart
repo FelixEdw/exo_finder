@@ -17,7 +17,7 @@ class ComparisonResultPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Hasil Perbandingan'),
+        title: const Text('Comparison Results'),
         centerTitle: true,
         backgroundColor: Colors.grey[900],
         elevation: 0,
@@ -40,7 +40,7 @@ class ComparisonResultPage extends StatelessWidget {
     );
   }
 
-  // Helper widget untuk menampilkan detail satu planet
+  // Helper widget to display the details of one planet
   Widget _buildPlanetDetailsColumn(Planet planet) {
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
@@ -55,21 +55,21 @@ class ComparisonResultPage extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 24),
-          _buildDetailRow('Radius', '${planet.radius?.toStringAsFixed(2) ?? 'N/A'} x Bumi'),
-          _buildDetailRow('Massa', '${planet.mass?.toStringAsFixed(2) ?? 'N/A'} x Bumi'),
-          _buildDetailRow('Jarak', '${planet.distanceFromEarth?.toStringAsFixed(2) ?? 'N/A'} pc'),
-          _buildDetailRow('Suhu Bintang', '${planet.stellarTemperature?.toStringAsFixed(0) ?? 'N/A'} K'),
+          _buildDetailRow('Radius', '${planet.radius?.toStringAsFixed(2) ?? 'N/A'} x Earth'),
+          _buildDetailRow('Mass', '${planet.mass?.toStringAsFixed(2) ?? 'N/A'} x Earth'),
+          _buildDetailRow('Distance', '${planet.distanceFromEarth?.toStringAsFixed(2) ?? 'N/A'} pc'),
+          _buildDetailRow('Stellar Temperature', '${planet.stellarTemperature?.toStringAsFixed(0) ?? 'N/A'} K'),
           const SizedBox(height: 16),
-          // Menampilkan informasi tambahan
-          _buildInfoBox('Kelayakhunian', planet.habitability ?? 'N/A', Colors.green),
+          // Displaying additional information
+          _buildInfoBox('Habitability', planet.habitability ?? 'N/A', Colors.green),
           const SizedBox(height: 8),
-          _buildInfoBox('Susunan Planet', planet.composition ?? 'N/A', Colors.blue),
+          _buildInfoBox('Planet Composition', planet.composition ?? 'N/A', Colors.blue),
         ],
       ),
     );
   }
 
-  // Helper widget untuk membuat baris detail
+  // Helper widget to create a detail row
   Widget _buildDetailRow(String label, String value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -83,7 +83,7 @@ class ComparisonResultPage extends StatelessWidget {
     );
   }
 
-  // Helper widget untuk infografis
+  // Helper widget for infographics
   Widget _buildInfoBox(String title, String value, Color color) {
     return Container(
       padding: const EdgeInsets.all(12),

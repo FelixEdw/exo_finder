@@ -38,10 +38,10 @@ class WelcomePage extends StatelessWidget {
                     ),
                     child: const Text(
                       'The universe, limitless.\nDiscoveries, endless.',
-                      textAlign: TextAlign.center, // Tambahkan ini
+                      textAlign: TextAlign.center, // Add this
                       style: TextStyle(
                         fontSize: 24,
-                        fontWeight: FontWeight.w300, // Diubah dari bold
+                        fontWeight: FontWeight.w300, // Changed from bold
                       ),
                     ),
                   ),

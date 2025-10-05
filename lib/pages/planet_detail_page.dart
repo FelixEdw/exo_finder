@@ -34,7 +34,7 @@ class PlanetDetailPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Gunakan gambar placeholder, karena API tidak menyediakan gambar
+            // Use a placeholder image, because the API doesn't provide an image
             Image.asset(
               'assets/logo.png',
               height: 200,
@@ -46,10 +46,10 @@ class PlanetDetailPage extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 32),
-            _buildInfoCard('Radius (x Bumi)', planet.radius?.toStringAsFixed(2) ?? 'N/A'),
-            _buildInfoCard('Massa (x Bumi)', planet.mass?.toStringAsFixed(2) ?? 'N/A'),
-            _buildInfoCard('Jarak (parsec)', planet.distanceFromEarth?.toStringAsFixed(2) ?? 'N/A'),
-            _buildInfoCard('Suhu Bintang (K)', planet.stellarTemperature?.toStringAsFixed(0) ?? 'N/A'),
+            _buildInfoCard('Radius (x Earth)', planet.radius?.toStringAsFixed(2) ?? 'N/A'),
+            _buildInfoCard('Mass (x Earth)', planet.mass?.toStringAsFixed(2) ?? 'N/A'),
+            _buildInfoCard('Distance (parsec)', planet.distanceFromEarth?.toStringAsFixed(2) ?? 'N/A'),
+            _buildInfoCard('Stellar Temperature (K)', planet.stellarTemperature?.toStringAsFixed(0) ?? 'N/A'),
           ],
         ),
       ),

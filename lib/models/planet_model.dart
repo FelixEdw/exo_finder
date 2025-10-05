@@ -6,8 +6,8 @@ class Planet {
   final double? mass;
   final double? distanceFromEarth;
   final double? stellarTemperature;
-  final String? habitability; // Tambahan: Status kelayakhunian
-  final String? composition;  // Tambahan: Susunan planet
+  final String? habitability; // Addition: Habitability status
+  final String? composition;  // Addition: Planet composition
 
   Planet({
     required this.name,
@@ -22,24 +22,24 @@ class Planet {
   factory Planet.fromJson(Map<String, dynamic> json) {
     double? stellarTemp = (json['st_teff'] as num?)?.toDouble();
     double? planetRadius = (json['pl_rade'] as num?)?.toDouble();
-    String habitabilityStatus = 'Tidak diketahui';
-    String planetComposition = 'Tidak diketahui';
+    String habitabilityStatus = 'Unknown';
+    String planetComposition = 'Unknown';
 
-    // Logika sederhana untuk menentukan kelayakhunian
+    // Simple logic to determine habitability
     if (stellarTemp != null && stellarTemp > 4000 && stellarTemp < 7000) {
-      habitabilityStatus = 'Berpotensi layak huni';
+      habitabilityStatus = 'Potentially habitable';
     } else {
-      habitabilityStatus = 'Tidak layak huni';
+      habitabilityStatus = 'Not habitable';
     }
 
-    // Logika sederhana untuk menentukan komposisi
+    // Simple logic to determine composition
     if (planetRadius != null) {
       if (planetRadius < 2) {
-        planetComposition = 'Batuan';
+        planetComposition = 'Rocky';
       } else if (planetRadius >= 2 && planetRadius < 10) {
         planetComposition = 'Gas';
       } else {
-        planetComposition = 'Raksasa Gas';
+        planetComposition = 'Gas Giant';
       }
     }
 

@@ -45,10 +45,10 @@ class HomePage extends StatelessWidget {
             enableHover: false,
             hoverColor: Colors.white,
             hoverRadius: 90,
-            connectDots: false, // true jika ingin partikel saling terhubung
+            connectDots: false, // true if you want the particles to connect
           ),
 
-          // Lapis 3: Konten Utama (Logo, Teks, Tombol)
+          // Layer 3: Main Content (Logo, Text, Button)
           Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -73,12 +73,12 @@ class HomePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   const Text(
-                    'Temukan dan bandingkan planet-planet di luar tata surya kita.',
+                    'Discover and compare planets outside our solar system.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.white70,
-                      shadows: [ // Tambahkan bayangan agar teks lebih terbaca
+                      shadows: [ // Add a shadow to make the text more readable
                         Shadow(blurRadius: 8.0, color: Colors.black)
                       ]
                     ),
@@ -89,7 +89,7 @@ class HomePage extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                       textStyle: const TextStyle(fontSize: 18),
                     ),
-                    child: const Text('Mulai Menjelajah'),
+                    child: const Text('Start Exploring'),
                     onPressed: () {
                       Navigator.push(
                         context,
