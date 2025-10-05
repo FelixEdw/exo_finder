@@ -38,7 +38,6 @@ class WelcomePage extends StatelessWidget {
                     ),
                     child: const Text(
                       'The universe, limitless.\nDiscoveries, endless.',
-                      // 3. TEKS DIBUAT RATA TENGAH DAN FONT LEBIH TIPIS
                       textAlign: TextAlign.center, // Tambahkan ini
                       style: TextStyle(
                         fontSize: 24,

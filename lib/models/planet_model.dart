@@ -16,7 +16,6 @@ class Planet {
   });
 
   // Factory constructor untuk membuat instance Planet dari JSON
-  // Ini bagian yang paling penting untuk API
   factory Planet.fromJson(Map<String, dynamic> json) {
     return Planet(
       name: json['pl_name'] as String,

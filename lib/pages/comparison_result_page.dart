@@ -27,13 +27,10 @@ class ComparisonResultPage extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Kolom untuk Planet 1
             Expanded(
               child: _buildPlanetDetailsColumn(planet1),
             ),
-            // Garis pemisah
             const VerticalDivider(color: Colors.grey, thickness: 1),
-            // Kolom untuk Planet 2
             Expanded(
               child: _buildPlanetDetailsColumn(planet2),
             ),
@@ -50,8 +47,7 @@ class ComparisonResultPage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Gunakan gambar generik untuk semua planet
-          Image.asset('assets/logo.png', height: 120), // Menggunakan logo sebagai placeholder
+          Image.asset('assets/logo.png', height: 120),
           const SizedBox(height: 16),
           Text(
             planet.name,
