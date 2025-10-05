@@ -76,7 +76,7 @@ class _PlanetListPageState extends State<PlanetListPage> {
           // Tampilkan pesan error jika perlu
           ScaffoldMessenger.of(
             context,
-          ).showSnackBar(SnackBar(content: Text("Gagal memuat data: $error")));
+          ).showSnackBar(SnackBar(content: Text("Failed to load: $error")));
         });
   }
 
@@ -229,7 +229,7 @@ class _PlanetListPageState extends State<PlanetListPage> {
       floatingActionButton: selectedPlanets.length == 2
           ? FloatingActionButton.extended(
               onPressed: _navigateToComparison,
-              label: const Text('Bandingkan'),
+              label: const Text('Compare'),
               icon: const Icon(Icons.compare_arrows),
             )
           : null,
