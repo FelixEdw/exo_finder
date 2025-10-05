@@ -1,5 +1,3 @@
-// lib/pages/home_page.dart
-
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -28,25 +26,17 @@ class HomePage extends StatelessWidget {
                   const SizedBox(height: 20),
                   Align(
                     alignment: Alignment.centerLeft,
-                    // --- PERUBAHAN UTAMA DI SINI ---
-                    // Menggunakan ShaderMask untuk membuat teks gradasi
                     child: ShaderMask(
-                      // BlendMode.srcIn akan menerapkan gradasi ke dalam bentuk teks
                       blendMode: BlendMode.srcIn,
                       shaderCallback: (bounds) => const LinearGradient(
                         colors: [
-                          // Warna awal (FFFFFF)
                           Color(0xFFFFFFFF),
-                          // Warna akhir (999999)
                           Color(0x999999),
                         ],
-                        // Anda bisa mengatur arah gradasi di sini
-                        // begin: Alignment.topCenter,
-                        // end: Alignment.bottomCenter,
+
                       ).createShader(
                         Rect.fromLTWH(0, 0, bounds.width, bounds.height),
                       ),
-                      // Teks yang akan diberi gradasi
                       child: const Text(
                         'The universe, limitless.\nDiscoveries, endless.',
                         style: TextStyle(

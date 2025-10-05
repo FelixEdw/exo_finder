@@ -1,5 +1,3 @@
-// lib/pages/planet_list_page.dart
-
 import 'dart:math';
 import 'package:flutter/material.dart';
 import '../models/planet_model.dart';
@@ -122,24 +120,19 @@ class _PlanetListPageState extends State<PlanetListPage> {
       ..translate(textDx, textDy, 0)
       ..rotateZ(textRotation);
     
-    // ================== PERUBAHAN DI SINI ==================
-    // Menentukan posisi planet berdasarkan namanya
     double bottomPosition;
     double leftPosition;
     double rightPosition;
 
     if (planet.name == 'Saturn') {
-      // Atur posisi khusus untuk Saturnus karena ukurannya berbeda
-      bottomPosition = -445; // Lebih ke bawah
+      bottomPosition = -445;
       leftPosition = -250;
       rightPosition = -250;
     } else {
-      // Atur posisi default untuk semua planet lainnya
       bottomPosition = -270;
       leftPosition = -50;
       rightPosition = -50;
     }
-    // ========================================================
 
     return Stack(
       clipBehavior: Clip.none,
@@ -171,7 +164,7 @@ class _PlanetListPageState extends State<PlanetListPage> {
             ],
           ),
         ),
-        // --- Gunakan variabel posisi yang sudah ditentukan ---
+
         Positioned(
           bottom: bottomPosition,
           left: leftPosition,

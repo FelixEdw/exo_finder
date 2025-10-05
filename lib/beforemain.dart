@@ -41,8 +41,6 @@ final List<PlanetData> planetPages = [
 ];
 
 void main() {
-  // Pastikan Anda telah menambahkan gambar Earth dan Mars di folder 'assets/' 
-  // dan mendeklarasikannya di pubspec.yaml
   runApp(const ExofinderApp());
 }
 
@@ -74,8 +72,6 @@ class ExofinderApp extends StatelessWidget {
     );
   }
 }
-
-// Widget untuk Halaman Intro
 class IntroPage extends StatelessWidget {
   const IntroPage({super.key});
 
@@ -88,15 +84,9 @@ class IntroPage extends StatelessWidget {
         children: [
           const Text('EXOFINDER', style: TextStyle(color: Colors.white, fontSize: 16)),
           const SizedBox(height: 50),
-          // Area gambar 'The universe, limitless.'
           Container(
             height: MediaQuery.of(context).size.height * 0.35,
-            // decoration: BoxDecoration(
-            //   border: Border.all(color: Colors.white12),
-            //   borderRadius: BorderRadius.circular(10),
-            // ),
             alignment: Alignment.center,
-            //child: const Text('Gambar Ilustrasi Bola Garis', style: TextStyle(color: Colors.white54)),
             child: Image.asset('assets/lineball.jpeg'),
           ),
           const SizedBox(height: 30),
@@ -105,7 +95,6 @@ class IntroPage extends StatelessWidget {
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
           ),
           const Spacer(),
-          // Indikator dan tombol panah
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

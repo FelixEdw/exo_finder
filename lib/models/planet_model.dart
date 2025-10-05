@@ -1,5 +1,3 @@
-// lib/models/planet_model.dart
-
 class Planet {
   final String name;
   final String imagePath;
@@ -8,7 +6,7 @@ class Planet {
   final String distance;
   final String atmosphere;
   final int potentialForLife;
-  final double imageHeight; // Properti untuk tinggi gambar kustom
+  final double imageHeight;
 
   Planet({
     required this.name,
@@ -18,11 +16,10 @@ class Planet {
     required this.distance,
     required this.atmosphere,
     required this.potentialForLife,
-    this.imageHeight = 600, // Nilai default jika tidak diatur
+    this.imageHeight = 600,
   });
 }
 
-// Data lengkap untuk planet-planet di Tata Surya
 final List<Planet> planets = [
   Planet(
     name: 'Mercury',
@@ -82,7 +79,7 @@ final List<Planet> planets = [
     distance: "1.4 billion km",
     atmosphere: "Hydrogen, Helium",
     potentialForLife: 1,
-    imageHeight: 1000.0, // Ukuran khusus untuk Saturnus
+    imageHeight: 1000.0,
   ),
   Planet(
     name: 'Uranus',
