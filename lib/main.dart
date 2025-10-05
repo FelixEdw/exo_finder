@@ -1,10 +1,7 @@
 // lib/main.dart
 
 import 'package:flutter/material.dart';
-import 'pages/home_page.dart';
-import 'pages/planet_list_page.dart';
-import 'pages/planet_detail_page.dart';
-import 'models/planet_model.dart';
+import 'pages/welcome_page.dart'; // Pastikan import ini benar
 
 void main() {
   runApp(const MyApp());
@@ -16,21 +13,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'ExoFinder',
+      title: 'Exo Finder',
       theme: ThemeData(
         brightness: Brightness.dark,
-        scaffoldBackgroundColor: Colors.black,
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        fontFamily: 'OpenSans',
       ),
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const HomePage(),
-        '/planet-list': (context) => const PlanetListPage(),
-        '/planet-detail': (context) {
-          final planet = ModalRoute.of(context)!.settings.arguments as Planet;
-          return PlanetDetailPage(planet: planet);
-        },
-      },
+      // Ganti baris ini
+      home: const WelcomePage(), 
     );
   }
 }
