@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.black,
         fontFamily: 'OpenSans',
       ),
-      initialRoute: '/',
+      initialRoute: '/home_page',
       routes: {
         '/': (context) => const WelcomePage(),
         '/home_page': (context) => const HomePage(),

@@ -17,7 +17,7 @@ class ComparisonResultPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Comparison Result'),
+        title: const Text('Hasil Perbandingan'),
         centerTitle: true,
         backgroundColor: Colors.grey[900],
         elevation: 0,
@@ -59,6 +59,11 @@ class ComparisonResultPage extends StatelessWidget {
           _buildDetailRow('Massa', '${planet.mass?.toStringAsFixed(2) ?? 'N/A'} x Bumi'),
           _buildDetailRow('Jarak', '${planet.distanceFromEarth?.toStringAsFixed(2) ?? 'N/A'} pc'),
           _buildDetailRow('Suhu Bintang', '${planet.stellarTemperature?.toStringAsFixed(0) ?? 'N/A'} K'),
+          const SizedBox(height: 16),
+          // Menampilkan informasi tambahan
+          _buildInfoBox('Kelayakhunian', planet.habitability ?? 'N/A', Colors.green),
+          const SizedBox(height: 8),
+          _buildInfoBox('Susunan Planet', planet.composition ?? 'N/A', Colors.blue),
         ],
       ),
     );
@@ -73,6 +78,25 @@ class ComparisonResultPage extends StatelessWidget {
           Text(label, style: TextStyle(color: Colors.grey[400], fontSize: 12)),
           const SizedBox(height: 4),
           Text(value, style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14), textAlign: TextAlign.center,),
+        ],
+      ),
+    );
+  }
+
+  // Helper widget untuk infografis
+  Widget _buildInfoBox(String title, String value, Color color) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.2),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: color),
+      ),
+      child: Column(
+        children: [
+          Text(title, style: TextStyle(color: color, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 4),
+          Text(value, style: const TextStyle(fontSize: 16)),
         ],
       ),
     );

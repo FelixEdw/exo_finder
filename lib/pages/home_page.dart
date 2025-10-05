@@ -1,264 +1,110 @@
 import 'package:flutter/material.dart';
-import '../models/planet_model.dart';
-import '../services/api_services.dart';
-import 'comparison_result_page.dart';
+import 'planet_list_page.dart';
+import 'package:particles_flutter/particles_flutter.dart'; 
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  final ApiService _apiService = ApiService();
-  List<Planet>? _allPlanets;
-  Planet? _selectedPlanet1;
-  Planet? _selectedPlanet2;
-
-  final TextEditingController _controller1 = TextEditingController();
-  final TextEditingController _controller2 = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    _fetchPlanets();
-  }
-
-  Future<void> _fetchPlanets() async {
-    try {
-      final planets = await _apiService.fetchPlanets();
-      setState(() {
-        _allPlanets = planets;
-      });
-    } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Gagal memuat data planet: $e')),
-        );
-      }
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 100,
-        title: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/logo.png',
-              height: 30, 
-            ),
-            const SizedBox(height: 8),
-            const Text(
-              'COMPARE PLANETS',
-              style: TextStyle(
-                fontFamily: 'OpenSans',
-                fontWeight: FontWeight.w600,
-                fontSize: 20,
+      body: Stack(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/background.jpg"), 
+                fit: BoxFit.cover,
               ),
             ),
-          ],
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
-      body: _allPlanets == null
-          ? const Center(child: CircularProgressIndicator())
-          : Padding(
-              padding: const EdgeInsets.all(20.0),
+          ),
+
+          CircularParticle(
+            key: UniqueKey(),
+            awayRadius: 80,
+            numberOfParticles: 200, 
+            speedOfParticles: 1,
+            height: screenHeight,
+            width: screenWidth,
+            onTapAnimation: true,
+            particleColor: Colors.white.withAlpha(150), 
+            awayAnimationCurve: Curves.easeInOut,
+            awayAnimationDuration: const Duration(milliseconds: 600),
+            maxParticleSize: 2, 
+            isRandSize: true,
+            isRandomColor: true,
+            randColorList: [
+              Colors.white.withAlpha(210),
+              Colors.purple.withAlpha(150),
+              Colors.blue.withAlpha(150),
+              Colors.yellow.withAlpha(20),
+            ],
+            enableHover: false,
+            hoverColor: Colors.white,
+            hoverRadius: 90,
+            connectDots: false, // true jika ingin partikel saling terhubung
+          ),
+
+          // Lapis 3: Konten Utama (Logo, Teks, Tombol)
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _buildPlanetAutocomplete(
-                    controller: _controller1,
-                    hint: 'Search Planet 1',
-                    onSelected: (planet) {
-                      setState(() {
-                        _selectedPlanet1 = planet;
-                      });
-                    },
-                    onClear: () {
-                      setState(() {
-                        _controller1.clear();
-                        _selectedPlanet1 = null;
-                      });
-                    },
+                children: <Widget>[
+                  Image.asset(
+                    'assets/logo.png',
+                    width: 150,
                   ),
                   const SizedBox(height: 20),
-                  const Text('VS', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-                  const SizedBox(height: 20),
-                  _buildPlanetAutocomplete(
-                    controller: _controller2,
-                    hint: 'Search Planet 2',
-                    onSelected: (planet) {
-                      setState(() {
-                        _selectedPlanet2 = planet;
-                      });
-                    },
-                     onClear: () {
-                      setState(() {
-                        _controller2.clear();
-                        _selectedPlanet2 = null;
-                      });
-                    },
-                  ),
-                  const Spacer(),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 15),
-                        backgroundColor: Colors.grey[850],
-                        foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12),)
-                      ),
-                      onPressed: (_selectedPlanet1 != null && _selectedPlanet2 != null)
-                          ? () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => ComparisonResultPage(
-                                    planet1: _selectedPlanet1!,
-                                    planet2: _selectedPlanet2!,
-                                  ),
-                                ),
-                              );
-                            }
-                          : null,
-                      child: const Text('COMPARE', style: TextStyle(fontSize: 18)),
+                  const Text(
+                    'Exo Finder',
+                    style: TextStyle(
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      shadows: [ 
+                        Shadow(blurRadius: 10.0, color: Colors.black)
+                      ]
                     ),
+                  ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    'Temukan dan bandingkan planet-planet di luar tata surya kita.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white70,
+                      shadows: [ // Tambahkan bayangan agar teks lebih terbaca
+                        Shadow(blurRadius: 8.0, color: Colors.black)
+                      ]
+                    ),
+                  ),
+                  const SizedBox(height: 50),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                      textStyle: const TextStyle(fontSize: 18),
+                    ),
+                    child: const Text('Mulai Menjelajah'),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const PlanetListPage(),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
             ),
-    );
-  }
-
-  Widget _buildPlanetAutocomplete({
-    required TextEditingController controller,
-    required String hint,
-    required ValueChanged<Planet> onSelected,
-    required VoidCallback onClear,
-  }) {
-    return Autocomplete<Planet>(
-      displayStringForOption: (Planet option) => option.name,
-      optionsBuilder: (TextEditingValue textEditingValue) {
-        // --- PERBAIKAN DI SINI ---
-        // 1. Cek dulu apakah data planet sudah ada. Jika belum, jangan lakukan apa-apa.
-        if (_allPlanets == null) {
-          return const Iterable<Planet>.empty();
-        }
-        
-        // 2. Cek apakah kotak pencarian kosong.
-        if (textEditingValue.text.isEmpty) {
-          return const Iterable<Planet>.empty();
-        }
-        
-        // 3. Jika semua aman, baru lakukan filter.
-        return _allPlanets!.where((Planet planet) {
-          return planet.name.toLowerCase().contains(textEditingValue.text.toLowerCase());
-        });
-      },
-      onSelected: (Planet selection) {
-        onSelected(selection);
-        controller.text = selection.name;
-      },
-      fieldViewBuilder: (BuildContext context, TextEditingController fieldController, FocusNode fieldFocusNode, VoidCallback onFieldSubmitted) {
-        return TextFormField(
-          controller: controller,
-          focusNode: fieldFocusNode,
-          decoration: InputDecoration(
-            prefixIcon: const Icon(Icons.search, color: Colors.white70),
-            suffixIcon: controller.text.isNotEmpty
-              ? IconButton(
-                  icon: const Icon(Icons.clear, color: Colors.white70),
-                  onPressed: onClear,
-                )
-              : null,
-            hintText: hint,
-            hintStyle: TextStyle(color: Colors.white70),
-            filled: true,
-            fillColor: Colors.grey[850],
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide.none,
-            ),
           ),
-          onChanged: (text) {
-            setState(() {});
-            fieldController.text = text;
-          },
-        );
-      },
-      optionsViewBuilder: (BuildContext context, AutocompleteOnSelected<Planet> onSelected, Iterable<Planet> options) {
-        return Align(
-          alignment: Alignment.topLeft,
-          child: Material(
-            elevation: 4.0,
-            color: Colors.grey[800],
-            child: SizedBox(
-              height: 200.0,
-              child: ListView.builder(
-                padding: EdgeInsets.zero,
-                itemCount: options.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final Planet option = options.elementAt(index);
-                  final String inputText = controller.text;
-
-                  return InkWell(
-                    onTap: () {
-                      onSelected(option);
-                    },
-                    child: ListTile(
-                      title: RichText(
-                        text: TextSpan(
-                          children: _highlightOccurrences(option.name, inputText),
-                          style: DefaultTextStyle.of(context).style,
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ),
-        );
-      },
+        ],
+      ),
     );
-  }
-
-  List<TextSpan> _highlightOccurrences(String source, String query) {
-    if (query.isEmpty) {
-      return [TextSpan(text: source)];
-    }
-
-    var matches = query.toLowerCase().allMatches(source.toLowerCase());
-    if (matches.isEmpty) {
-      return [TextSpan(text: source)];
-    }
-    
-    List<TextSpan> spans = [];
-    int start = 0;
-    for (var match in matches) {
-      if (match.start > start) {
-        spans.add(TextSpan(text: source.substring(start, match.start)));
-      }
-      spans.add(TextSpan(
-        text: source.substring(match.start, match.end),
-        style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.blueAccent),
-      ));
-      start = match.end;
-    }
-
-    if (start < source.length) {
-      spans.add(TextSpan(text: source.substring(start, source.length)));
-    }
-    
-    return spans;
   }
 }
