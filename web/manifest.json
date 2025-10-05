@@ -1,6 +1,6 @@
 {
-    "name": "exo_finder",
-    "short_name": "exo_finder",
+    "name": "flutter_nasa",
+    "short_name": "flutter_nasa",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

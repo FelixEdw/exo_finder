@@ -1,4 +1,4 @@
-# exo_finder
+# flutter_nasa
 
 A new Flutter project.
 
